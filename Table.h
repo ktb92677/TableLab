@@ -5,6 +5,7 @@
 #include "Color.h"
 #include "List.h"
 #include "Materials.h"
+#include "Book.h"
 
 class Table {
 	private:
@@ -28,7 +29,7 @@ class Table {
 
                         cout << "Width: ";
                         cin >> dim.w;
-                        while (dim.l <= 0) {
+                        while (dim.w <= 0) {
                                 cout << "Number is negative... please try again" << endl;
                                 cin >> dim.w;
                         }
@@ -65,11 +66,33 @@ class Table {
 		}
 
 		void addBook() {
-			
+			items_on_table.add(new Book(&available_surface_area));
+			cout << "Added book" << endl;
 		}
 
 		void removeBook() {
-			
+			int temp_num;
+			cout << "Please select a book using the listed index to remove: " << items_on_table.size << endl;
+			for (int i = 0; i < items_on_table.size; i++) {
+				if (items_on_table.get(i)->book != NULL) {
+					cout << i << ": "<< items_on_table.get(i)->book->title << endl;
+				}
+			}
+			while (true) {
+				cin >> temp_num;
+				if (temp_num < 0 || temp_num >= items_on_table.size) {
+					cout << "Index is out of bounds. Please try again" << endl;
+					continue;
+				}
+                               	if (items_on_table.get(temp_num)->book != NULL) {
+					items_on_table.remove(temp_num);
+					break;
+                               	} else {
+					cout << "This object is not a book, please try again" << endl;
+					continue;
+				}
+			}
+			cout << "Removed book!" << endl;
 		}
 
 		void addTissuebox() {
