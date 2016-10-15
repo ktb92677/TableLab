@@ -13,6 +13,7 @@ class TissueBox (Table *table){
 		int current_num_tissues;
 		int max_num_tissues;
 	public:
+		string tissue;
 		TissueBox(Table *table){
 			cout << "What are the dimensions of your tissue box?"<< endl;
 			cout << "Length: ";
@@ -22,11 +23,15 @@ class TissueBox (Table *table){
 
 			Table -> available_surface_area -= dim.l * dim.w;
 
-			cout << "How many tissues does your tissue box currently have?"
-			cin >> current_num_tissues;
-			cout << "How many tissues can your tissue box hold?"
-			cin >> max_num_tissues;
-		}
+
+	void take_tissue(Table *table){
+		cout << "How many tissues can your tissue box hold?"
+		cin >> max_num_tissues;
+		cout << "How many tissues does your tissue box currently have?"
+		cin >> current_num_tissues;
+
+		current_num_tissues--;;
+	}
 };
 
 #endif
