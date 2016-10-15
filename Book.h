@@ -51,8 +51,10 @@ class Book {
 
 			if (open) {
 				*table -= dim.l * dim.w;
+				cout << "Opened book" << endl;
 			} else {
 				*table += dim.l * dim.w;
+				cout << "Closed book" << endl;
 			}
 		}
 };

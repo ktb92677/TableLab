@@ -95,7 +95,39 @@ class Table {
 			cout << "Removed book!" << endl;
 		}
 
+		void openBook() {
+			int temp_num;
+                        cout << "Please select a book using the listed index to open/close: " << items_on_table.size << endl;
+                        for (int i = 0; i < items_on_table.size; i++) {
+                                if (items_on_table.get(i)->book != NULL) {
+                                        cout << i << ": "<< items_on_table.get(i)->book->title << endl;
+                                }
+                        }
+                        while (true) {
+                                cin >> temp_num;
+                                if (temp_num < 0 || temp_num >= items_on_table.size) {
+                                        cout << "Index is out of bounds. Please try again" << endl;
+                                        continue;
+                                }
+                                if (items_on_table.get(temp_num)->book != NULL) {
+					items_on_table.get(temp_num)->book->change_book_state(&available_surface_area);
+                                        break;
+                                } else {
+                                        cout << "This object is not a book, please try again" << endl;
+                                        continue;
+                                }
+                        }
+		}
+
 		void addTissuebox() {
+			
+		}
+
+		void removeTissuebox() {
+			
+		}
+
+		void takeTissue() {
 			
 		}
 
@@ -104,6 +136,10 @@ class Table {
 		}
 
 		void removeLamp() {
+			
+		}
+
+		void turnoffLamp() {
 			
 		}
 };
