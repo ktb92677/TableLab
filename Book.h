@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include "Dimension.h"
-#include "Table.h"
 
 using namespace std;
 
@@ -13,9 +12,9 @@ class Book {
 		Dimension dim;
 		bool open;
 		int num_pages;
-		string title;
 	public:
-		Book(Table *table) {
+		string title;
+		Book(int *table) {
 			cout << "What are the dimensions of your book?" << endl;
 
 			cout << "Length: ";
@@ -27,13 +26,13 @@ class Book {
 
 			cout << "Width: ";
 			cin >> dim.w;
-                        while (dim.l <= 0) {
+                        while (dim.w <= 0) {
                                 cout << "Number is negative... please try again" << endl;
                                 cin >> dim.w;
                         }
 
 			open = false;
-			table->available_surface_area += dim.l * dim.w;
+			*table += dim.l * dim.w;
 
 			cout << "What are the number of pages in the book? ";
 			cin >> num_pages;
@@ -41,19 +40,19 @@ class Book {
                                 cout << "Number is negative... please try again" << endl;
                                 cin >> num_pages;
                         }
-
+			cin.ignore();
 			cout << "What is the title of the book? ";
 			getline(cin, title);
 
 		}
 
-		void change_book_state(Table *table) {
+		void change_book_state(int *table) {
 			open = !open;
 
 			if (open) {
-				table->available_surface_area += dim.l * dim.w;
+				*table -= dim.l * dim.w;
 			} else {
-				table->available_surface_area -= dim.l * dim.w;
+				*table += dim.l * dim.w;
 			}
 		}
 };

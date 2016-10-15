@@ -2,37 +2,41 @@
 #define LIST_
 
 #include <iostream>
+#include "Book.h"
 
-struct Element {Element* next; void* obj; };
+struct Element {Element* next; Book* book; };
 
 class List {
 	private:
 		Element* head;
 	public:
-		List() { head = NULL; }
-		void add(void* obj) {
+		int size;
+		List() { head = NULL; size = 0; }
+		void add(Book* obj) {
 			Element* temp = new Element();
-			temp->obj = obj;
+			temp->book = obj;
 			temp->next = head;
 			head = temp;
+			size++;
 		}
 
 		Element* remove(int index) {
 			Element* temp = head, *prev;
-			while (index >= 0 && temp != NULL) {
+			while (index > 0 && temp != NULL) {
 				prev = temp;
 				temp = temp->next;
 				index--;
 			}
 			if (temp != NULL) {
 				prev->next = temp->next;
+				size--;
 			}
 			return temp;
 		}
 
 		Element* get(int index) {
 			Element* temp = head;
-                        while (index >= 0 && temp != NULL) {
+                        while (index > 0 && temp != NULL) {
                                 temp = temp->next;
                                 index--;
                         }
