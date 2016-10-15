@@ -18,13 +18,16 @@ class Lamp {
 			cout << "What are the dimensions of your lamp?"
 			cout << "Length: ";
 			cin >> dim.l;
-			if  (dim.l < 0)
+			while  (dim.l < 0){
 				cout << "This number is a negative, please try again.";
+				cin >> dim.l;
+			}
 			cout << "Width: ";
 			cin >> dim.w;
-			if (dim.w < 0)
+			while (dim.w < 0){
 				cout << "This number is a negative please try again.";
-
+				cin >> dim.w;
+			}
 			Table->avaiable_surface_area -= dim.l * dim.w;
 
 			cout << "What color is your lamp?";

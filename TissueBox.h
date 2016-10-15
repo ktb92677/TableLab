@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class TissueBox (){
+class TissueBox {
 	private:
 		Dimension dim;
 		int current_num_tissues;
@@ -19,27 +19,36 @@ class TissueBox (){
 			cout << "What are the dimensions of your tissue box?"<< endl;
 			cout << "Length: ";
 			cin >> dim.l;
+			while (dim.l < 0){
+				cout << "That is a negative number, please try again."
+				cin >> dim.l;
+			}
+
 			cout << "Width: ";
 			cin >> dim.w;
+			while (dim.w < 0){
+				cout << " That is a negative number, please try again.";
+				cin >> dim.w;
+			}
 
 			Table -> available_surface_area -= dim.l * dim.w;
 
 		cout << "How many tissues can your tissue box hold?"
 		cin >> max_num_tissues;
-		if (max_num_tissues < 0)
+		while (max_num_tissues < 0){
 			cout << "That is a negative number, please try again.";;
+			cin >> max_num_tissues;
+			}
 		}
 
 	void take_tissue(Table *table){
-		cout << "How many tissues does your tissue box currently have?"
-		cin >> current_num_tissues;
-		if (current_num_tissues < 0)
-			cout << "That is a negative number, please try again."
-
-		current_num_tissues--;
+		current_num_tissues = max_num_tissues;
 		cout << "I have taken a tissue."
-		if (current_num_tissues == 0){
+		if (current_num_tissues < 0){
 			cout << "You ran out of tissues, go buy another box.";
+		}else{
+			current_num_tissues--;
+		}
 	}
 };
 
