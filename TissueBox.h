@@ -6,8 +6,9 @@
 #include "Dimension.h"
 #include "Table.h"
 
+using namespace std;
 
-class TissueBox (Table *table){
+class TissueBox (){
 	private:
 		Dimension dim;
 		int current_num_tissues;
@@ -23,15 +24,24 @@ class TissueBox (Table *table){
 
 			Table -> available_surface_area -= dim.l * dim.w;
 
-
-	void take_tissue(Table *table){
 		cout << "How many tissues can your tissue box hold?"
 		cin >> max_num_tissues;
+		if (max_num_tissues < 0)
+			cout << "That is a negative number, please try again.";;
+		}
+
+	void take_tissue(Table *table){
 		cout << "How many tissues does your tissue box currently have?"
 		cin >> current_num_tissues;
+		if (current_num_tissues < 0)
+			cout << "That is a negative number, please try again."
 
-		current_num_tissues--;;
+		current_num_tissues--;
+		cout << "I have taken a tissue."
+		if (current_num_tissues == 0){
+			cout << "You ran out of tissues, go buy another box.";
 	}
 };
+
 
 #endif
