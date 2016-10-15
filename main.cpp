@@ -6,5 +6,6 @@ int main() {
 	cout << "hello world!" << endl;
 	cout << "antoher statement" << endl;
 	cout << "one more statement" << endl;
+	cout << "hello" << endl;
 	return 0;
 }
