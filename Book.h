@@ -17,16 +17,30 @@ class Book {
 	public:
 		Book(Table *table) {
 			cout << "What are the dimensions of your book?" << endl;
+
 			cout << "Length: ";
 			cin >> dim.l;
+                        while (dim.l <= 0) {
+                                cout << "Number is negative... please try again" << endl;
+                        	cin >> dim.l;
+			}
+
 			cout << "Width: ";
 			cin >> dim.w;
+                        while (dim.l <= 0) {
+                                cout << "Number is negative... please try again" << endl;
+                                cin >> dim.w;
+                        }
 
 			open = false;
 			table->available_surface_area += dim.l * dim.w;
 
 			cout << "What are the number of pages in the book? ";
 			cin >> num_pages;
+                        while (num_pages <= 0) {
+                                cout << "Number is negative... please try again" << endl;
+                                cin >> num_pages;
+                        }
 
 			cout << "What is the title of the book? ";
 			getline(cin, title);
