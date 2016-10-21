@@ -9,11 +9,11 @@ using namespace std;
 
 class Book {
 	private:
-		Dimension dim;
-		bool open;
 		int num_pages;
 	public:
 		string title;
+		bool open, created;
+		Dimension dim;
 		Book(int *table) {
 			cout << "What are the dimensions of your book?" << endl;
 
@@ -32,18 +32,23 @@ class Book {
                         }
 
 			open = false;
-			*table += dim.l * dim.w;
+			if ((dim.l * dim.w) > *table) {
+				cout << "Book is too large for the table. Book was not added." << endl;
+				created = false;
+			} else {
+				created = true;
+				*table -= dim.l * dim.w;
 
-			cout << "What are the number of pages in the book? ";
-			cin >> num_pages;
-                        while (num_pages <= 0) {
-                                cout << "Number is negative... please try again" << endl;
-                                cin >> num_pages;
-                        }
-			cin.ignore();
-			cout << "What is the title of the book? ";
-			getline(cin, title);
-
+				cout << "What are the number of pages in the book? ";
+				cin >> num_pages;
+                        	while (num_pages <= 0) {
+                                	cout << "Number is negative... please try again" << endl;
+                                	cin >> num_pages;
+                        	}
+				cin.ignore();
+				cout << "What is the title of the book? ";
+				getline(cin, title);
+			}
 		}
 
 		void change_book_state(int *table) {

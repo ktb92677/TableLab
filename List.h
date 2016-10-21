@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include "Book.h"
+#include "TissueBox.h"
+#include "Lamp.h"
 
-struct Element {Element* next; Book* book; };
+struct Element {Element* next; Book* book; TissueBox* tissue; Lamp* lamp; };
 
 class List {
 	private:
@@ -15,10 +17,32 @@ class List {
 		void add(Book* obj) {
 			Element* temp = new Element();
 			temp->book = obj;
+			temp->tissue = NULL;
+			temp->lamp = NULL;
 			temp->next = head;
 			head = temp;
 			size++;
 		}
+
+		void add(TissueBox* obj) {
+                        Element* temp = new Element();
+                        temp->book = NULL;
+                        temp->tissue = obj;
+                        temp->lamp = NULL;
+                        temp->next = head;
+                        head = temp;
+                        size++;
+                }
+
+		void add(Lamp* obj) {
+                        Element* temp = new Element();
+                        temp->book = NULL;
+                        temp->tissue = NULL;
+                        temp->lamp = obj;
+                        temp->next = head;
+                        head = temp;
+                        size++;
+                }
 
 		Element* remove(int index) {
 			Element* temp = head, *prev;
